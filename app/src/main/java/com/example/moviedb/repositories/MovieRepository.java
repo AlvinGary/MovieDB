@@ -5,6 +5,8 @@ import androidx.lifecycle.MutableLiveData;
 import com.example.moviedb.helper.Const;
 import com.example.moviedb.model.Movies;
 import com.example.moviedb.model.NowPlaying;
+import com.example.moviedb.model.TopRated;
+import com.example.moviedb.model.UpComing;
 import com.example.moviedb.retrofit.ApiService;
 
 import retrofit2.Call;
@@ -58,4 +60,37 @@ public class MovieRepository {
         return result;
     }
 
+    public MutableLiveData<UpComing> getUpComingData(){
+        final MutableLiveData<UpComing> result = new MutableLiveData<>();
+        ApiService.endPoint().getUpComing(Const.API_KEY).enqueue(new Callback<UpComing>() {
+            @Override
+            public void onResponse(Call<UpComing> call, Response<UpComing> response) {
+                result.setValue(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<UpComing> call, Throwable t) {
+
+            }
+        });
+
+        return result;
+    }
+
+    public MutableLiveData<TopRated> getTopRatedData(){
+        final MutableLiveData<TopRated> result = new MutableLiveData<>();
+        ApiService.endPoint().getTopRated(Const.API_KEY).enqueue(new Callback<TopRated>() {
+            @Override
+            public void onResponse(Call<TopRated> call, Response<TopRated> response) {
+                result.setValue(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<TopRated> call, Throwable t) {
+
+            }
+        });
+
+        return result;
+    }
 }

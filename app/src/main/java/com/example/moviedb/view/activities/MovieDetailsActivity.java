@@ -1,4 +1,4 @@
-package com.example.moviedb.view;
+package com.example.moviedb.view.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
@@ -29,7 +29,6 @@ public class MovieDetailsActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         movie_id = intent.getStringExtra("movie_id");
-
         viewModel = new ViewModelProvider(MovieDetailsActivity.this).get(MovieViewModel.class);
         viewModel.getMovieById(movie_id);
         viewModel.getResultGetMovieById().observe(MovieDetailsActivity.this, showMovieDetails);
